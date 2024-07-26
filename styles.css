@@ -1,0 +1,178 @@
+/* Basic reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    background: #f4f4f4;
+    color: #333;
+    text-align: center; /* Center all text */
+}
+
+/* Container styling */
+.container {
+    max-width: 85%;
+    margin: auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Header styling */
+h1 {
+    margin-bottom: 20px;
+    font-size: 2.5rem;
+    color: #333;
+}
+
+h2 {
+    margin-bottom: 20px;
+    font-size: 2rem;
+    color: #444;
+}
+
+h1, .icon {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.icon {
+    height: 5.5rem; /* Adjust this value as necessary to match the text height */
+    width: auto;
+    margin-right: 10px; /* Optional: Add some space between the icon and the title */
+    margin-top: -25px;
+}
+.mosquepic {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+/* Navigation styling */
+nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+    background: #007bff;
+    padding: 10px 0;
+    border-radius: 8px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 5px 20px;
+    margin: 15px;
+    font-weight: bold;
+    transition: background 0.3s;
+    white-space: nowrap; /* Prevent words from wrapping */
+}
+
+nav a:hover {
+    background: #0056b3;
+    border-radius: 4px;
+}
+
+/* Section styling */
+section {
+    margin-bottom: 40px;
+    padding: 20px;
+    background: #e9ecef;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Team section styling */
+#team .team-member {
+    margin-bottom: 20px;
+}
+
+#team .team-member img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+.teamNames {
+    font-weight: bold;
+}
+
+/* Form styling */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center form items */
+}
+
+form div {
+    margin-bottom: 15px;
+    width: 100%; /* Ensure form elements take full width */
+}
+
+form label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+    text-align: left; /* Align labels to the left for better readability */
+}
+
+form input, form textarea {
+    padding: 10px;
+    font-size: 16px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+form input:focus, form textarea:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+textarea {
+    resize: vertical;
+}
+
+.btn {
+    padding: 10px;
+    margin-top: 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #007bff;
+    color: white;
+    border-radius: 0 0 8px 8px;
+    margin-top: 40px;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+    nav {
+        flex-direction: column;
+    }
+    
+    nav a {
+        margin: 2px 0;
+    }
+}
