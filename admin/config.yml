@@ -3,7 +3,7 @@ backend:
   branch: main # Branch to update
 
 # When testing locally with the netlify-cms-proxy-server
-local_backend: true
+local_backend: false
 
 # Media folder where uploaded images will be saved in the repo
 media_folder: "assets/images/uploads"
