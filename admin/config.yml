@@ -2,9 +2,6 @@ backend:
   name: git-gateway
   branch: main
 
-media_folder: "assets/images/uploads"
-public_folder: "/assets/images/uploads"
-
 collections:
   - name: "events"
     label: "Events"
@@ -33,6 +30,7 @@ collections:
     label: "Leadership"
     folder: "_leadership"
     create: true
+    summary: "{{title}} - {{position}}"
     fields:
       - {label: "Layout", name: "layout", widget: "hidden", default: "leadership"}
       - {label: "Name", name: "title", widget: "string", required: true}
