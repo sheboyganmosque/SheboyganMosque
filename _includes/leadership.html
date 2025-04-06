@@ -1,26 +1,32 @@
 <div class="container py-4">
   <div class="row g-4">
-    {% assign sorted_leadership = site.leadership | sort: "order" %}
-    {% for member in sorted_leadership %}
-    <div class="col-md-6 col-lg-4">
-      <div class="card h-100 border-0 shadow-sm hover-shadow transition">
-        <div class="card-body p-4 text-center">
-          <div class="mb-3">
-            {% if member.image %}
-              <img src="{{ member.image }}" alt="{{ member.title }}" class="rounded-circle" style="width: 100px; height: 100px; object-fit: cover;">
-            {% else %}
-              <i class="fas fa-user-circle fa-3x text-primary"></i>
-            {% endif %}
+    {% if site.leadership and site.leadership.size > 0 %}
+      {% assign sorted_leadership = site.leadership | sort: "order" %}
+      {% for member in sorted_leadership %}
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100 border-0 shadow-sm hover-shadow transition">
+            <div class="card-body p-4 text-center">
+              <div class="mb-3">
+                {% if member.image %}
+                  <img src="{{ member.image }}" alt="{{ member.title }}" class="rounded-circle" style="width: 100px; height: 100px; object-fit: cover;">
+                {% else %}
+                  <i class="fas fa-user-circle fa-3x text-primary"></i>
+                {% endif %}
+              </div>
+              <h3 class="h5 fw-bold mb-2">{{ member.title }}</h3>
+              <p class="text-muted mb-2">{{ member.position }}</p>
+              {% if member.body %}
+                <div class="text-muted small">{{ member.body | markdownify }}</div>
+              {% endif %}
+            </div>
           </div>
-          <h3 class="h5 fw-bold mb-2">{{ member.title }}</h3>
-          <p class="text-muted mb-2">{{ member.position }}</p>
-          {% if member.body %}
-            <div class="text-muted small">{{ member.body | markdownify }}</div>
-          {% endif %}
         </div>
+      {% endfor %}
+    {% else %}
+      <div class="col-12 text-center">
+        <p class="text-muted">Leadership team information coming soon.</p>
       </div>
-    </div>
-    {% endfor %}
+    {% endif %}
   </div>
 </div>
 
