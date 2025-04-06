@@ -24,9 +24,20 @@
   --element-spacing: 2rem;
 }
 
-/* Base Styles */
-body {
+/* Global font settings */
+body,
+p,
+a,
+span,
+div,
+input,
+textarea,
+button {
   font-family: 'Poppins', sans-serif;
+}
+
+body {
+  font-weight: 400;
   color: var(--text);
   line-height: 1.6;
   overflow-x: hidden;
