@@ -127,6 +127,13 @@ a:hover {
   color: var(--primary);
 }
 
+/* Override Bootstrap active state for donate button */
+.nav-link.donate-link.active {
+  background-color: var(--white) !important;
+  color: var(--primary) !important;
+  border-color: var(--primary) !important;
+}
+
 .donate-link {
   background-color: var(--white);
   color: var(--primary);
@@ -136,8 +143,7 @@ a:hover {
   transition: all 0.3s ease;
 }
 
-.donate-link:hover,
-.donate-link.active {
+.donate-link:hover {
   background-color: var(--primary);
   color: var(--white);
   border-color: var(--primary);
