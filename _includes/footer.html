@@ -72,8 +72,8 @@ document.getElementById('whatsapp-form').addEventListener('submit', function(eve
   
   // Get form data
   const formData = {
-    from_name: this.from_name.value,
-    phone: this.phone.value,
+    email: this.phone.value, // Using phone as email since it's a WhatsApp request
+    name: this.from_name.value,
     message: this.message.value || 'No message provided',
     to_email: 'sheboyganmosque@gmail.com'
   };

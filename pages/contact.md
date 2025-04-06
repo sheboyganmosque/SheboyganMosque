@@ -86,10 +86,10 @@ document.getElementById('contact-form').addEventListener('submit', function(even
   
   // Get form data
   const formData = {
-    from_name: this.from_name.value,
-    from_email: this.from_email.value,
+    email: this.from_email.value,
+    name: this.from_name.value,
     message: this.message.value,
-    to_email: 'sheboyganmosque@gmail.com' // Your recipient email
+    to_email: 'sheboyganmosque@gmail.com'
   };
 
   // Send email using EmailJS
