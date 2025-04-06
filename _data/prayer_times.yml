@@ -10,6 +10,6 @@ adjustments:
   maghrib: 0
   isha: 0
 jumua_times:
-  - time: "2:00 PM"
-    location: "Islamic Society of Sheboygan"
+  - time: 13:10
+    location: Islamic Society of Sheboygan
     notes: ""
