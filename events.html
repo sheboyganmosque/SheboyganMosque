@@ -18,8 +18,8 @@ title: Events Calendar
         <h2 class="h5 mb-0">Announcements</h2>
       </div>
       <div class="card-body p-0">
-        {% assign announcements = site.announcements | sort: "date" | reverse %}
-        {% if announcements.size > 0 %}
+        {% if site.announcements and site.announcements.size > 0 %}
+          {% assign announcements = site.announcements | sort: "date" | reverse %}
           <ul class="list-group list-group-flush">
             {% for announcement in announcements %}
               <li class="list-group-item">
@@ -49,65 +49,84 @@ title: Events Calendar
         <h2 class="h5 mb-0">Regular Events</h2>
       </div>
       <div class="card-body p-0">
-        <ul class="list-group list-group-flush">
+        {% if site.events and site.events.size > 0 %}
           {% assign recurring_events = site.events | where: "type", "recurring" | sort: "day" %}
-          {% for event in recurring_events %}
-            <li class="list-group-item">
-              <div class="d-flex justify-content-between align-items-center">
-                <div>
-                  <h5 class="mb-1">{{ event.title }}</h5>
-                  <p class="mb-0 text-muted">{{ event.content | markdownify }}</p>
-                  <p class="mb-0 text-muted">Every {{ event.day }} at {{ event.time }}</p>
-                  {% if event.notes %}
-                    <p class="mb-0 text-muted"><small>{{ event.notes }}</small></p>
-                  {% endif %}
-                  {% if event.location %}
-                    <p class="mb-0 text-muted"><i class="fas fa-map-marker-alt me-1"></i> {{ event.location }}</p>
-                  {% endif %}
-                </div>
-              </div>
-            </li>
-          {% endfor %}
-        </ul>
+          {% if recurring_events.size > 0 %}
+            <ul class="list-group list-group-flush">
+              {% for event in recurring_events %}
+                <li class="list-group-item">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                      <h5 class="mb-1">{{ event.title }}</h5>
+                      <p class="mb-0 text-muted">{{ event.content | markdownify }}</p>
+                      <p class="mb-0 text-muted">Every {{ event.day }} at {{ event.time }}</p>
+                      {% if event.notes %}
+                        <p class="mb-0 text-muted"><small>{{ event.notes }}</small></p>
+                      {% endif %}
+                      {% if event.location %}
+                        <p class="mb-0 text-muted"><i class="fas fa-map-marker-alt me-1"></i> {{ event.location }}</p>
+                      {% endif %}
+                    </div>
+                  </div>
+                </li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            <div class="p-3 text-center text-muted">
+              No regular events scheduled.
+            </div>
+          {% endif %}
+        {% else %}
+          <div class="p-3 text-center text-muted">
+            No regular events scheduled.
+          </div>
+        {% endif %}
       </div>
     </div>
 
     <!-- Upcoming Events -->
     <h2 class="h4 mb-3">Upcoming Events</h2>
     <div class="upcoming-events">
-      {% assign current_time = site.time | date: '%s' %}
-      {% assign one_time_events = site.events | where: "type", "one-time" | sort: "date" %}
-      
-      {% for event in one_time_events %}
-        {% assign event_time = event.date | date: '%s' %}
-        {% if event_time >= current_time %}
-          <div class="card mb-3">
-            <div class="card-body">
-              <h3 class="h5 mb-2">{{ event.title }}</h3>
-              <p class="text-muted mb-2">
-                <i class="far fa-calendar-alt me-1"></i> {{ event.date | date: "%B %d, %Y" }}<br>
-                <i class="far fa-clock me-1"></i> {{ event.date | date: "%I:%M %p" }}
-                {% if event.end_date %}
-                - {{ event.end_date | date: "%I:%M %p" }}
+      {% if site.events and site.events.size > 0 %}
+        {% assign current_time = site.time | date: '%s' %}
+        {% assign one_time_events = site.events | where: "type", "one-time" | sort: "date" %}
+        {% assign has_upcoming_events = false %}
+        
+        {% for event in one_time_events %}
+          {% assign event_time = event.date | date: '%s' %}
+          {% if event_time >= current_time %}
+            {% assign has_upcoming_events = true %}
+            <div class="card mb-3">
+              <div class="card-body">
+                <h3 class="h5 mb-2">{{ event.title }}</h3>
+                <p class="text-muted mb-2">
+                  <i class="far fa-calendar-alt me-1"></i> {{ event.date | date: "%B %d, %Y" }}<br>
+                  <i class="far fa-clock me-1"></i> {{ event.date | date: "%I:%M %p" }}
+                  {% if event.end_date %}
+                  - {{ event.end_date | date: "%I:%M %p" }}
+                  {% endif %}
+                </p>
+                {% if event.location %}
+                <p class="text-muted mb-2">
+                  <i class="fas fa-map-marker-alt me-1"></i> {{ event.location }}
+                </p>
                 {% endif %}
-              </p>
-              {% if event.location %}
-              <p class="text-muted mb-2">
-                <i class="fas fa-map-marker-alt me-1"></i> {{ event.location }}
-              </p>
-              {% endif %}
-              {% if event.content %}
-              <div class="text-muted mb-0">{{ event.content | markdownify }}</div>
-              {% endif %}
+                {% if event.content %}
+                <div class="text-muted mb-0">{{ event.content | markdownify }}</div>
+                {% endif %}
+              </div>
             </div>
+          {% endif %}
+        {% endfor %}
+        
+        {% unless has_upcoming_events %}
+          <div class="text-center text-muted">
+            No upcoming events scheduled.
           </div>
-        {% endif %}
-      {% endfor %}
-      
-      {% assign upcoming_count = one_time_events | where_exp: "event", "event.date | date: '%s' >= current_time" | size %}
-      {% if upcoming_count == 0 %}
-        <div class="alert alert-info">
-          <p class="mb-0">No upcoming events scheduled at this time. Please check back soon for new events.</p>
+        {% endunless %}
+      {% else %}
+        <div class="text-center text-muted">
+          No upcoming events scheduled.
         </div>
       {% endif %}
     </div>
