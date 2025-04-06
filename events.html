@@ -85,7 +85,7 @@ title: Events Calendar
     <!-- Upcoming Events -->
     <h2 class="h4 mb-3">Upcoming Events</h2>
     <div class="upcoming-events">
-      {% assign upcoming_events = site.data.events.events | where_exp: "event", "event.date >= site.time" | sort: "date" %}
+      {% assign upcoming_events = site.data.events.events | where_exp: "event", "event.date | date: '%s' | plus: 0 >= site.time | date: '%s' | plus: 0" | sort: "date" %}
       
       {% for event in upcoming_events %}
       <div class="card mb-3">
