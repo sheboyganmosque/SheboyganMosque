@@ -9,5 +9,7 @@ adjustments:
   asr: 0
   maghrib: 0
   isha: 0
-jumuah:
-  time: 2:00 PM
+jumua_times:
+  - time: "2:00 PM"
+    location: "Islamic Society of Sheboygan"
+    notes: ""
