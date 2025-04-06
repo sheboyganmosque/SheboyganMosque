@@ -51,10 +51,9 @@ permalink: /prayer/
             <p class="lead">Friday Prayer (Jumu'ah)</p>
             <div class="jumua-time">
               <p>
-                <strong>1:10 PM</strong> at Islamic Society of Sheboygan
+                1:10 PM
               </p>
               <p>Khutbah starts promptly at 1:10 PM followed by prayer.</p>
-              <p>Please arrive early to secure a spot in the prayer hall.</p>
             </div>
           </div>
         </div>

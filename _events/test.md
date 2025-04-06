@@ -1,7 +1,8 @@
 ---
+layout: event
 title: test
-type: one-time
-location: ff
 date: 2025-04-07
+time: "12:00 PM"
+location: Islamic Society of Sheboygan
 ---
-t﻿est
+test

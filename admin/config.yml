@@ -26,36 +26,29 @@ collections:
     folder: "_events"
     create: true
     fields:
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Event Type", name: "type", widget: "select", options: ["one-time", "recurring"], default: "one-time"}
-      # Fields for all events
-      - {label: "Description", name: "body", widget: "markdown"}
-      - {label: "Location", name: "location", widget: "string"}
-      # Fields for one-time events
-      - {label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", required: false, hint: "Required for one-time events"}
-      - {label: "Start Time", name: "start_time", widget: "string", required: false, hint: "Required for one-time events (e.g., '2:00 PM')"}
-      - {label: "End Time", name: "end_time", widget: "string", required: false, hint: "Optional end time (e.g., '4:00 PM')"}
-      # Fields for recurring events
-      - {label: "Day of Week", name: "day", widget: "select", options: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"], required: false, hint: "Required for recurring events"}
-      - {label: "Time", name: "time", widget: "string", required: false, hint: "Required for recurring events (e.g., '7:00 PM')"}
-      - {label: "Notes", name: "notes", widget: "text", required: false}
+      - {label: "Layout", name: "layout", widget: "hidden", default: "event"}
+      - {label: "Title", name: "title", widget: "string", required: true}
+      - {label: "Date", name: "date", widget: "datetime", required: true}
+      - {label: "Time", name: "time", widget: "string", required: true}
+      - {label: "Location", name: "location", widget: "string", required: true, default: "Islamic Society of Sheboygan"}
+      - {label: "Body", name: "body", widget: "markdown"}
 
   - name: "announcements"
     label: "Announcements"
     folder: "_announcements"
     create: true
     fields:
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD"}
-      - {label: "Content", name: "body", widget: "markdown"}
-      - {label: "Priority", name: "priority", widget: "select", options: ["High", "Medium", "Low"], default: "Medium"}
+      - {label: "Layout", name: "layout", widget: "hidden", default: "announcement"}
+      - {label: "Title", name: "title", widget: "string", required: true}
+      - {label: "Content", name: "body", widget: "markdown", required: true}
 
   - name: "leadership"
-    label: "Leadership Team"
+    label: "Leadership"
     folder: "_leadership"
     create: true
     fields:
-      - {label: "Name", name: "title", widget: "string"}
-      - {label: "Position", name: "position", widget: "string"}
-      - {label: "Image", name: "image", widget: "image", required: false}
-      - {label: "Order", name: "order", widget: "number", default: 0, hint: "Order in which to display team members (lower numbers first)"} 
+      - {label: "Layout", name: "layout", widget: "hidden", default: "leadership"}
+      - {label: "Name", name: "title", widget: "string", required: true}
+      - {label: "Position", name: "position", widget: "string", required: true}
+      - {label: "Order", name: "order", widget: "number", default: 0}
+      - {label: "Image", name: "image", widget: "image", required: false} 

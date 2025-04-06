@@ -128,14 +128,18 @@ a:hover {
 }
 
 .donate-link {
-  color: var(--white) !important;
-  background-color: var(--primary);
+  background-color: var(--white);
+  color: var(--primary);
+  border: 2px solid var(--primary);
+  padding: 0.5rem 1rem;
   border-radius: 4px;
-  margin-left: 0.5rem;
+  transition: all 0.3s ease;
 }
 
 .donate-link:hover {
-  background-color: var(--primary-dark);
+  background-color: var(--primary);
+  color: var(--white);
+  border-color: var(--primary);
 }
 
 .dropdown-menu {
@@ -461,4 +465,16 @@ a:hover {
 .form-control:focus {
   border-color: var(--primary);
   box-shadow: 0 0 0 0.2rem rgba(0, 100, 0, 0.25);
+}
+
+.jumua-time p:first-child {
+  font-size: 2rem;
+  color: var(--primary);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.jumua-time p:last-child {
+  font-size: 1.1rem;
+  color: var(--text);
 }
