@@ -95,21 +95,30 @@ collections:
 
       # Team/Leadership
       - name: "team"
-        label: "Team Members"
+        label: "Leadership Team"
         file: "_data/team_members.yml"
-        description: "Leadership team information"
+        description: "Edit the mosque leadership team members"
         fields:
+          - label: "Page Title"
+            name: "page_title"
+            widget: "string"
+            default: "Leadership"
+          - label: "Page Subtitle"
+            name: "page_subtitle"
+            widget: "string"
+            default: "Meet the Islamic Society of Sheboygan Leadership Team"
           - label: "Team Members"
             name: "members"
             widget: "list"
+            label_singular: "Team Member"
             fields:
-              - {label: "Name", name: "name", widget: "string"}
+              - {label: "Full Name", name: "name", widget: "string"}
               - {label: "Position", name: "position", widget: "string"}
-              - {label: "Photo", name: "photo", widget: "image", required: false}
-              - {label: "Bio", name: "bio", widget: "markdown", required: false}
-              - {label: "Order (for sorting)", name: "order", widget: "number", default: 99}
-              - {label: "Email", name: "email", widget: "string", required: false}
-              - {label: "Phone", name: "phone", widget: "string", required: false}
+              - {label: "Profile Photo", name: "photo", widget: "image", required: false, hint: "Upload a square photo for best results"}
+              - {label: "Short Bio", name: "bio", widget: "text", required: false, hint: "A brief description of the team member"}
+              - {label: "Email Address", name: "email", widget: "string", required: false, hint: "Optional contact email"}
+              - {label: "Phone Number", name: "phone", widget: "string", required: false, hint: "Optional contact phone number"}
+              - {label: "Display Order", name: "order", widget: "number", default: 99, hint: "Lower numbers appear first"}
 
       # Navigation
       - name: "navigation"
