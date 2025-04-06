@@ -2,109 +2,45 @@ backend:
   name: git-gateway
   branch: main
 
-# When testing locally with the netlify-cms-proxy-server
-local_backend: true
-
-# Media folder where uploaded images will be saved in the repo
 media_folder: "assets/images/uploads"
-# Public folder where the images will be accessed in the built site
 public_folder: "/assets/images/uploads"
 
-# Enable editorial workflow (drafts, review, publish)
-publish_mode: editorial_workflow
-
-# Define collections
 collections:
-  - name: "content"
-    label: "Site Content"
-    files:
-      - name: "events"
-        label: "Events"
-        file: "_data/events.yml"
-        fields:
-          - label: "Events List"
-            name: "events"
-            widget: "list"
-            fields:
-              - {label: "Title", name: "title", widget: "string"}
-              - {label: "Date", name: "date", widget: "datetime"}
-              - {label: "End Date", name: "end_date", widget: "datetime", required: false}
-              - {label: "Location", name: "location", widget: "string"}
-              - {label: "Description", name: "body", widget: "markdown"}
-              - {label: "Featured", name: "featured", widget: "boolean", default: false}
+  - name: "events"
+    label: "Events"
+    folder: "_events"
+    create: true
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Event Type", name: "type", widget: "select", options: ["one-time", "recurring"], default: "one-time"}
+      # Fields for all events
+      - {label: "Description", name: "body", widget: "markdown"}
+      - {label: "Location", name: "location", widget: "string"}
+      # Fields for one-time events
+      - {label: "Date & Time", name: "date", widget: "datetime", required: false, hint: "Required for one-time events"}
+      - {label: "End Date & Time", name: "end_date", widget: "datetime", required: false}
+      # Fields for recurring events
+      - {label: "Day of Week", name: "day", widget: "select", options: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"], required: false, hint: "Required for recurring events"}
+      - {label: "Time", name: "time", widget: "string", required: false, hint: "Required for recurring events (e.g., '7:00 PM')"}
+      - {label: "Notes", name: "notes", widget: "text", required: false}
 
-      - name: "regular_events"
-        label: "Regular Events"
-        file: "_data/regular_events.yml"
-        fields:
-          - label: "Regular Events List"
-            name: "events"
-            widget: "list"
-            fields:
-              - {label: "Title", name: "title", widget: "string"}
-              - {label: "Description", name: "description", widget: "text"}
-              - {label: "Day", name: "day", widget: "select", options: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]}
-              - {label: "Time", name: "time", widget: "string"}
-              - {label: "Notes", name: "notes", widget: "text", required: false}
+  - name: "announcements"
+    label: "Announcements"
+    folder: "_announcements"
+    create: true
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Date", name: "date", widget: "datetime"}
+      - {label: "Content", name: "body", widget: "markdown"}
+      - {label: "Priority", name: "priority", widget: "select", options: ["High", "Medium", "Low"], default: "Medium"}
 
-      - name: "announcements"
-        label: "Announcements"
-        file: "_data/announcements.yml"
-        fields:
-          - label: "Active Announcements"
-            name: "active"
-            widget: "list"
-            fields:
-              - {label: "Title", name: "title", widget: "string"}
-              - {label: "Content", name: "content", widget: "markdown"}
-              - {label: "Start Date", name: "start_date", widget: "datetime", required: false}
-              - {label: "End Date", name: "end_date", widget: "datetime", required: false}
-              - {label: "Priority", name: "priority", widget: "select", options: ["High", "Medium", "Low"], default: "Medium"}
-              - {label: "Link Text", name: "link_text", widget: "string", required: false}
-              - {label: "Link URL", name: "link_url", widget: "string", required: false}
-
-      - name: "prayer_times"
-        label: "Prayer Times Settings"
-        file: "_data/prayer_times.yml"
-        fields:
-          - label: "Settings"
-            name: "settings"
-            widget: "object"
-            fields:
-              - {label: "Calculation Method", name: "method", widget: "select", options: ["ISNA", "MWL", "Egyptian", "Karachi", "Makkah"]}
-              - {label: "Asr Method", name: "asr_method", widget: "select", options: ["Standard", "Hanafi"]}
-              - {label: "DST", name: "dst", widget: "boolean", default: true}
-          - label: "Jumu'ah Times"
-            name: "jumua_times"
-            widget: "list"
-            fields:
-              - {label: "Time", name: "time", widget: "string", pattern: ["^([1-9]|1[0-2]):[0-5][0-9]\\s*[AaPp][Mm]$", "Please enter a valid time (e.g., 2:00 PM)"]}
-              - {label: "Notes", name: "notes", widget: "string", required: false}
-
-# Settings and configuration
-- name: "settings"
-  label: "Settings"
-  files:
-    - name: "leadership"
-      label: "Leadership Team"
-      file: "_data/leadership.yml"
-      fields:
-        - label: "Team Members"
-          name: "team"
-          widget: "list"
-          summary: "{{fields.name}}, {{fields.position}}"
-          fields:
-            - label: "Name"
-              name: "name"
-              widget: "string"
-            - label: "Position"
-              name: "position"
-              widget: "string"
-            - label: "Image"
-              name: "image"
-              widget: "image"
-              required: false
-            - label: "Bio"
-              name: "bio"
-              widget: "text"
-              required: false
+  - name: "leadership"
+    label: "Leadership Team"
+    folder: "_leadership"
+    create: true
+    fields:
+      - {label: "Name", name: "title", widget: "string"}
+      - {label: "Position", name: "position", widget: "string"}
+      - {label: "Image", name: "image", widget: "image", required: false}
+      - {label: "Bio", name: "body", widget: "markdown"}
+      - {label: "Order", name: "order", widget: "number", default: 0, hint: "Order in which to display team members (lower numbers first)"} 
