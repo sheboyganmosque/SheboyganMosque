@@ -53,14 +53,6 @@ permalink: /contact/
             sheboyganmosque@gmail.com
           </div>
 
-          <div class="mt-3">
-            <h3 class="h6 mb-2">Office Hours</h3>
-            <p class="mb-0">
-              Monday - Friday: 10:00 AM - 4:00 PM<br>
-              Saturday: By appointment<br>
-              Sunday: 9:00 AM - 2:00 PM
-            </p>
-          </div>
         </div>
       </div>
     </div>
