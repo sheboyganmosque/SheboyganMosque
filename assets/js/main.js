@@ -129,28 +129,29 @@ function initializePrayerTimes() {
       if (data.code === 200) {
         const times = data.data.timings;
         
-        // Apply adjustments from admin settings
-        Object.keys(adjustments).forEach(prayer => {
+        // Convert times to 12-hour format and apply adjustments
+        const formattedTimes = {};
+        Object.keys(times).forEach(prayer => {
           if (times[prayer]) {
             const [hours, minutes] = times[prayer].split(':').map(Number);
             const date = new Date();
-            date.setHours(hours, minutes + adjustments[prayer]);
-            times[prayer] = formatTime12Hour(date);
+            date.setHours(hours, minutes + (adjustments[prayer] || 0));
+            formattedTimes[prayer] = formatTime12Hour(date);
           }
         });
 
         // Cache the results
         const cacheData = {
           date: `${year}-${month}-${day}`,
-          times: times
+          times: formattedTimes
         };
         localStorage.setItem('prayerTimes', JSON.stringify(cacheData));
         
         // Update the UI
-        updateNextPrayer(times);
+        updateNextPrayer(formattedTimes);
         
         if (prayerTable) {
-          populatePrayerTimesTable(prayerTable, times);
+          populatePrayerTimesTable(prayerTable, formattedTimes);
         }
       } else {
         console.error('API returned error:', data);
