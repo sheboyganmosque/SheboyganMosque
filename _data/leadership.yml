@@ -1,13 +1,25 @@
 team:
   - name: Abdelouahid Souala
     position: President
+    image: ""
+    bio: ""
   - name: Mahmud Haleem
     position: Vice President
+    image: ""
+    bio: ""
   - name: Dr. Mansoor Mirza
     position: Director of Public Relations
+    image: ""
+    bio: ""
   - name: Lerim Demiri
     position: Treasurer
+    image: ""
+    bio: ""
   - name: Fatmeh Ferhud
     position: Director
+    image: ""
+    bio: ""
   - name: Wageeh Darwish
     position: Imam
+    image: ""
+    bio: ""

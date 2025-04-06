@@ -18,25 +18,32 @@ collections:
   # Events
   - name: "events"
     label: "Events"
-    folder: "_events"
-    create: true
+    folder: "_data"
+    file: "events.yml"
+    create: false
     fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Date", name: "date", widget: "datetime" }
-      - { label: "End Date", name: "end_date", widget: "datetime", required: false }
-      - { label: "Location", name: "location", widget: "string" }
-      - { label: "Description", name: "body", widget: "markdown" }
-      - { label: "Featured", name: "featured", widget: "boolean", default: false }
-      - { label: "Image", name: "image", widget: "image", required: false }
-      - { label: "Category", name: "category", widget: "select", options: ["Event", "Announcement"] }
-      - { label: "Publish Date", name: "publishDate", widget: "datetime" }
-      - { label: "Draft", name: "draft", widget: "boolean", default: false }
+      - label: "Events"
+        name: "events"
+        widget: "list"
+        summary: "{{fields.title}} - {{fields.date | date: '%B %d, %Y'}}"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Date", name: "date", widget: "datetime" }
+          - { label: "End Date", name: "end_date", widget: "datetime", required: false }
+          - { label: "Location", name: "location", widget: "string" }
+          - { label: "Description", name: "body", widget: "markdown" }
+          - { label: "Featured", name: "featured", widget: "boolean", default: false }
+          - { label: "Image", name: "image", widget: "image", required: false }
+          - { label: "Category", name: "category", widget: "select", options: ["Event", "Announcement"] }
+          - { label: "Publish Date", name: "publishDate", widget: "datetime" }
+          - { label: "Draft", name: "draft", widget: "boolean", default: false }
 
   # Regular Events
   - name: "regular_events"
     label: "Regular Events"
     folder: "_data"
     file: "regular_events.yml"
+    create: false
     fields:
       - label: "Regular Events"
         name: "events"
@@ -78,6 +85,7 @@ collections:
     label: "Announcements"
     folder: "_data"
     file: "announcements.yml"
+    create: false
     fields:
       - label: "Active Announcements"
         name: "active"
@@ -164,7 +172,7 @@ collections:
 
       - name: "leadership"
         label: "Leadership Team"
-        file: "leadership.yml"
+        file: "_data/leadership.yml"
         fields:
           - label: "Team Members"
             name: "team"

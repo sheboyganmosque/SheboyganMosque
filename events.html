@@ -85,17 +85,15 @@ title: Events Calendar
     <!-- Upcoming Events -->
     <h2 class="h4 mb-3">Upcoming Events</h2>
     <div class="upcoming-events">
-      {% assign upcoming_events = site.events | where_exp: "event", "event.start_date >= site.time" | sort: "start_date" %}
+      {% assign upcoming_events = site.data.events.events | where_exp: "event", "event.date >= site.time" | sort: "date" %}
       
       {% for event in upcoming_events %}
       <div class="card mb-3">
         <div class="card-body">
-          <h3 class="h5 mb-2">
-            <a href="{{ event.url | relative_url }}" class="text-decoration-none">{{ event.title }}</a>
-          </h3>
+          <h3 class="h5 mb-2">{{ event.title }}</h3>
           <p class="text-muted mb-2">
-            <i class="far fa-calendar-alt me-1"></i> {{ event.start_date | date: "%B %d, %Y" }}<br>
-            <i class="far fa-clock me-1"></i> {{ event.start_date | date: "%I:%M %p" }}
+            <i class="far fa-calendar-alt me-1"></i> {{ event.date | date: "%B %d, %Y" }}<br>
+            <i class="far fa-clock me-1"></i> {{ event.date | date: "%I:%M %p" }}
             {% if event.end_date %}
             - {{ event.end_date | date: "%I:%M %p" }}
             {% endif %}
@@ -105,8 +103,8 @@ title: Events Calendar
             <i class="fas fa-map-marker-alt me-1"></i> {{ event.location }}
           </p>
           {% endif %}
-          {% if event.excerpt %}
-          <p class="text-muted mb-0">{{ event.excerpt }}</p>
+          {% if event.body %}
+          <p class="text-muted mb-0">{{ event.body | markdownify }}</p>
           {% endif %}
         </div>
       </div>

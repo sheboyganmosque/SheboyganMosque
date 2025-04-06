@@ -49,19 +49,18 @@ permalink: /prayer/
         <div class="card-body">
           <div class="jumu-ah-info text-center">
             <p class="lead">Friday Prayer (Jumu'ah)</p>
-            {% if site.data.prayer_times.jumua_times[0] %}
-              {% assign time = site.data.prayer_times.jumua_times[0].time %}
-              {% assign hours = time | split: ":" | first | plus: 0 %}
-              {% assign minutes = time | split: ":" | last | plus: 0 %}
-              {% assign ampm = hours | modulo: 24 | plus: 0 | divided_by: 12 | plus: 0 | modulo: 2 | plus: 0 | replace: "0", "AM" | replace: "1", "PM" %}
-              {% assign hour12 = hours | modulo: 12 | plus: 0 | replace: "0", "12" %}
-              <h2 class="display-6 mb-3">{{ hour12 }}:{{ minutes | prepend: "00" | slice: -2, 2 }} {{ ampm }}</h2>
-              <p>Khutbah starts promptly at {{ hour12 }}:{{ minutes | prepend: "00" | slice: -2, 2 }} {{ ampm }} followed by prayer.</p>
-              {% if site.data.prayer_times.jumua_times[0].notes %}
-                <p>{{ site.data.prayer_times.jumua_times[0].notes }}</p>
-              {% endif %}
-            {% endif %}
-            <p>Please arrive early to secure a spot in the prayer hall.</p>
+            {% for jumua in site.data.prayer_times.jumua_times %}
+              <div class="jumua-time">
+                <p>
+                  <strong>{{ jumua.time }}</strong> at {{ jumua.location }}
+                  {% if jumua.notes != "" %}
+                    <br><small>{{ jumua.notes }}</small>
+                  {% endif %}
+                </p>
+                <p>Khutbah starts promptly at {{ jumua.time }} followed by prayer.</p>
+                <p>Please arrive early to secure a spot in the prayer hall.</p>
+              </div>
+            {% endfor %}
           </div>
         </div>
       </div>
