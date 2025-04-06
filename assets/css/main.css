@@ -393,3 +393,24 @@ a:hover {
 .btn {
   font-weight: 500;
 }
+
+/* Announcement Banner */
+.announcement-banner {
+  background-color: var(--primary);
+  color: white;
+  padding: 0.5rem 0;
+  text-align: center;
+}
+
+.announcement-header {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.announcement-header i {
+  margin-right: 0.5rem;
+}
