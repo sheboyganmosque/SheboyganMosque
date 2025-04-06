@@ -114,11 +114,6 @@ collections:
             fields:
               - {label: "Full Name", name: "name", widget: "string"}
               - {label: "Position", name: "position", widget: "string"}
-              - {label: "Profile Photo", name: "photo", widget: "image", required: false, hint: "Upload a square photo for best results"}
-              - {label: "Short Bio", name: "bio", widget: "text", required: false, hint: "A brief description of the team member"}
-              - {label: "Email Address", name: "email", widget: "string", required: false, hint: "Optional contact email"}
-              - {label: "Phone Number", name: "phone", widget: "string", required: false, hint: "Optional contact phone number"}
-              - {label: "Display Order", name: "order", widget: "number", default: 99, hint: "Lower numbers appear first"}
 
       # Navigation
       - name: "navigation"
