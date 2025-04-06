@@ -36,7 +36,7 @@ collections:
   - name: "regular_events"
     label: "Regular Events"
     folder: "_data"
-    file: "_data/regular_events.yml"
+    file: "regular_events.yml"
     fields:
       - label: "Regular Events"
         name: "events"
@@ -77,7 +77,7 @@ collections:
   - name: "announcements"
     label: "Announcements"
     folder: "_data"
-    file: "_data/announcements.yml"
+    file: "announcements.yml"
     fields:
       - label: "Active Announcements"
         name: "active"
@@ -98,7 +98,7 @@ collections:
     files:
       - name: "prayer_times"
         label: "Prayer Times"
-        file: "_data/prayer_times.yml"
+        file: "prayer_times.yml"
         fields:
           - label: "Prayer Times Settings"
             name: "settings"
@@ -152,7 +152,7 @@ collections:
               - label: "Time"
                 name: "time"
                 widget: "string"
-                pattern: ["^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$", "Please enter a valid time in 24-hour format (HH:MM)"]
+                pattern: ["^([1-9]|1[0-2]):[0-5][0-9]\\s*[AaPp][Mm]$", "Please enter a valid time in 12-hour format (e.g., 2:00 PM)"]
               - label: "Location"
                 name: "location"
                 widget: "string"
@@ -164,7 +164,7 @@ collections:
 
       - name: "leadership"
         label: "Leadership Team"
-        file: "_data/leadership.yml"
+        file: "leadership.yml"
         fields:
           - label: "Team Members"
             name: "team"
