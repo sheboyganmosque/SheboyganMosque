@@ -1,7 +1,0 @@
-This folder contains website images. Replace this placeholder with actual image assets.
-
-Required images:
-- mosque-logo.png - Main site logo
-- mosque-hero.jpg - Hero image for the homepage
-- testimonial-placeholder.jpg - Default image for testimonials
-- favicon.ico - Site favicon
