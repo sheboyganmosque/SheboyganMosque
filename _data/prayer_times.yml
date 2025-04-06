@@ -1,0 +1,13 @@
+settings:
+  method: ISNA
+  asr_method: Standard
+  dst: true
+adjustments:
+  fajr: 0
+  sunrise: 0
+  dhuhr: 0
+  asr: 0
+  maghrib: 0
+  isha: 0
+jumuah:
+  time: 2 PM
