@@ -97,20 +97,13 @@ collections:
       - name: "team"
         label: "Leadership Team"
         file: "_data/team_members.yml"
-        description: "Edit the mosque leadership team members"
+        description: "Edit the mosque leadership team members. Each line should be in the format: Name, Position"
         fields:
-          - label: "Page Title"
-            name: "page_title"
-            widget: "string"
-            default: "Leadership"
-          - label: "Page Subtitle"
-            name: "page_subtitle"
-            widget: "string"
-            default: "Meet the Islamic Society of Sheboygan Leadership Team"
           - label: "Team Members"
             name: "members"
             widget: "list"
             label_singular: "Team Member"
+            summary: "{{fields.name}}, {{fields.position}}"
             fields:
               - {label: "Full Name", name: "name", widget: "string"}
               - {label: "Position", name: "position", widget: "string"}

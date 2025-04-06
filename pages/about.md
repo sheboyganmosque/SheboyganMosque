@@ -1,7 +1,7 @@
 ---
 layout: page
-title: "{{ site.data.team_members.page_title }}"
-subtitle: "{{ site.data.team_members.page_subtitle }}"
+title: "Leadership"
+subtitle: "Meet the Islamic Society of Sheboygan Leadership Team"
 permalink: /about/
 ---
 
