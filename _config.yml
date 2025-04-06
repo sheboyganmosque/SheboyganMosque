@@ -18,9 +18,9 @@ plugins:
 
 # Collections
 collections:
-  events:
+  posts:
     output: true
-    permalink: /events/:path/
+    permalink: /posts/:year/:month/:day/:title/
   team:
     output: false
 
@@ -31,11 +31,6 @@ defaults:
       type: "posts"
     values:
       layout: "post"
-  - scope:
-      path: ""
-      type: "events"
-    values:
-      layout: "event"
   - scope:
       path: ""
       type: "pages"
@@ -50,3 +45,6 @@ exclude:
   - vendor/
   - .gitignore
   - README.md
+  - .jekyll-cache/
+  - .sass-cache/
+  - admin/node_modules/
