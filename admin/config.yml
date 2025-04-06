@@ -48,7 +48,7 @@ collections:
             widget: "string"
           - label: "Description"
             name: "description"
-            widget: "markdown"
+            widget: "text"
           - label: "Frequency"
             name: "frequency"
             widget: "select"
@@ -60,7 +60,6 @@ collections:
           - label: "Time"
             name: "time"
             widget: "string"
-            pattern: ["^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$", "Please enter a valid time in 24-hour format (HH:MM)"]
           - label: "Location"
             name: "location"
             widget: "string"
@@ -73,14 +72,6 @@ collections:
             name: "active"
             widget: "boolean"
             default: true
-          - label: "Start Date"
-            name: "start_date"
-            widget: "datetime"
-            required: false
-          - label: "End Date"
-            name: "end_date"
-            widget: "datetime"
-            required: false
 
   # Announcements
   - name: "announcements"

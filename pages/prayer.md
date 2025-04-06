@@ -49,10 +49,12 @@ permalink: /prayer/
         <div class="card-body">
           <div class="jumu-ah-info text-center">
             <p class="lead">Friday Prayer (Jumu'ah)</p>
-            <h2 class="display-6 mb-3">{{ site.data.prayer_times.jumuah.time }}</h2>
-            <p>Khutbah starts promptly at {{ site.data.prayer_times.jumuah.time }} followed by prayer.</p>
-            {% if site.data.prayer_times.jumuah.note %}
-              <p>{{ site.data.prayer_times.jumuah.note }}</p>
+            {% if site.data.prayer_times.jumua_times[0] %}
+              <h2 class="display-6 mb-3">{{ site.data.prayer_times.jumua_times[0].time }}</h2>
+              <p>Khutbah starts promptly at {{ site.data.prayer_times.jumua_times[0].time }} followed by prayer.</p>
+              {% if site.data.prayer_times.jumua_times[0].notes %}
+                <p>{{ site.data.prayer_times.jumua_times[0].notes }}</p>
+              {% endif %}
             {% endif %}
             <p>Please arrive early to secure a spot in the prayer hall.</p>
           </div>
@@ -60,3 +62,4 @@ permalink: /prayer/
       </div>
     </div>
   </div>
+</div>

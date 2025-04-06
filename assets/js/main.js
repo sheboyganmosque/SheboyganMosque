@@ -133,9 +133,14 @@ function initializePrayerTimes() {
         const formattedTimes = {};
         Object.keys(times).forEach(prayer => {
           if (times[prayer]) {
+            // Parse the time from the API response
             const [hours, minutes] = times[prayer].split(':').map(Number);
+            
+            // Create a date object for today with the prayer time
             const date = new Date();
             date.setHours(hours, minutes + (adjustments[prayer] || 0));
+            
+            // Format the adjusted time
             formattedTimes[prayer] = formatTime12Hour(date);
           }
         });
