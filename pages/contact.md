@@ -5,6 +5,14 @@ subtitle: "Get in touch with Islamic Society of Sheboygan"
 permalink: /contact/
 ---
 
+<!-- Add EmailJS script -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>
+  (function() {
+    emailjs.init("X4HQo9D8QodjcS4JQ"); // Replace with your EmailJS public key
+  })();
+</script>
+
 <div class="container py-4">
   <div class="row">
     <!-- Contact Form -->
@@ -14,15 +22,15 @@ permalink: /contact/
           <h2 class="h5 mb-3">Send us a Message</h2>
           <form id="contact-form">
             <div class="mb-3">
-              <input type="text" class="form-control" placeholder="Your Name" required>
+              <input type="text" class="form-control" name="from_name" placeholder="Your Name" required>
             </div>
             
             <div class="mb-3">
-              <input type="email" class="form-control" placeholder="Your Email" required>
+              <input type="email" class="form-control" name="from_email" placeholder="Your Email" required>
             </div>
             
             <div class="mb-3">
-              <textarea class="form-control" rows="4" placeholder="Your Message" required></textarea>
+              <textarea class="form-control" name="message" rows="4" placeholder="Your Message" required></textarea>
             </div>
             
             <button type="submit" class="btn btn-primary">Send Message</button>
@@ -52,7 +60,6 @@ permalink: /contact/
             <i class="fas fa-envelope me-2"></i>
             sheboyganmosque@gmail.com
           </div>
-
         </div>
       </div>
     </div>
@@ -76,8 +83,23 @@ permalink: /contact/
 <script>
 document.getElementById('contact-form').addEventListener('submit', function(event) {
   event.preventDefault();
-  // Add your form submission logic here
-  alert('Thank you for your message. We will get back to you soon.');
-  this.reset();
+  
+  // Get form data
+  const formData = {
+    from_name: this.from_name.value,
+    from_email: this.from_email.value,
+    message: this.message.value,
+    to_email: 'sheboyganmosque@gmail.com' // Your recipient email
+  };
+
+  // Send email using EmailJS
+  emailjs.send('service_ubvg252', 'template_8t8tr7z', formData)
+    .then(function(response) {
+      alert('Thank you for your message. We will get back to you soon.');
+      this.reset();
+    }, function(error) {
+      alert('Sorry, there was an error sending your message. Please try again later.');
+      console.error('EmailJS Error:', error);
+    });
 });
 </script>

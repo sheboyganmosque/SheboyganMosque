@@ -1,4 +1,12 @@
 <footer class="site-footer bg-dark text-white py-5">
+  <!-- Add EmailJS script -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script>
+    (function() {
+      emailjs.init("X4HQo9D8QodjcS4JQ");
+    })();
+  </script>
+
   <div class="container">
     <div class="row">
       <div class="col-lg-4 mb-4 mb-lg-0">
@@ -57,3 +65,48 @@
     </div>
   </div>
 </footer>
+
+<script>
+document.getElementById('whatsapp-form').addEventListener('submit', function(event) {
+  event.preventDefault();
+  
+  // Get form data
+  const formData = {
+    from_name: this.from_name.value,
+    phone: this.phone.value,
+    message: this.message.value || 'No message provided',
+    to_email: 'sheboyganmosque@gmail.com'
+  };
+
+  // Show loading state
+  const submitButton = this.querySelector('button[type="submit"]');
+  const originalButtonText = submitButton.textContent;
+  submitButton.disabled = true;
+  submitButton.textContent = 'Sending...';
+
+  // Send email using EmailJS
+  emailjs.send('service_ubvg252', 'template_8t8tr7z', formData)
+    .then(function(response) {
+      // Show success message
+      const statusDiv = document.getElementById('form-status');
+      statusDiv.className = 'alert alert-success mb-3';
+      statusDiv.textContent = 'Thank you for your request. We will contact you soon.';
+      statusDiv.classList.remove('d-none');
+      
+      // Reset form
+      event.target.reset();
+    }, function(error) {
+      // Show error message
+      const statusDiv = document.getElementById('form-status');
+      statusDiv.className = 'alert alert-danger mb-3';
+      statusDiv.textContent = 'Sorry, there was an error sending your request. Please try again later.';
+      statusDiv.classList.remove('d-none');
+      console.error('EmailJS Error:', error);
+    })
+    .finally(function() {
+      // Reset button state
+      submitButton.disabled = false;
+      submitButton.textContent = originalButtonText;
+    });
+});
+</script>
