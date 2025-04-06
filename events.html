@@ -18,31 +18,37 @@ title: Events Calendar
         <h2 class="h5 mb-0">Announcements</h2>
       </div>
       <div class="card-body p-0">
-        {% assign announcements = site.data.announcements.active | sort: "priority" | reverse %}
-        {% if announcements.size > 0 %}
-          <ul class="list-group list-group-flush">
-            {% for announcement in announcements %}
-              {% assign now = site.time | date: '%s' %}
-              {% assign start = announcement.start_date | date: '%s' | default: 0 %}
-              {% assign end = announcement.end_date | date: '%s' | default: 9999999999 %}
-              {% if now >= start and now <= end %}
-                <li class="list-group-item">
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div>
-                      <h5 class="mb-1">{{ announcement.title }}</h5>
-                      <div class="text-muted mb-2">{{ announcement.content | markdownify }}</div>
-                      {% if announcement.link_url and announcement.link_text %}
-                        <a href="{{ announcement.link_url }}" class="btn btn-sm btn-outline-primary">{{ announcement.link_text }}</a>
+        {% if site.data.announcements and site.data.announcements.active %}
+          {% assign announcements = site.data.announcements.active | sort: "priority" | reverse %}
+          {% if announcements.size > 0 %}
+            <ul class="list-group list-group-flush">
+              {% for announcement in announcements %}
+                {% assign now = site.time | date: '%s' %}
+                {% assign start = announcement.start_date | date: '%s' | default: 0 %}
+                {% assign end = announcement.end_date | date: '%s' | default: 9999999999 %}
+                {% if now >= start and now <= end %}
+                  <li class="list-group-item">
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div>
+                        <h5 class="mb-1">{{ announcement.title }}</h5>
+                        <div class="text-muted mb-2">{{ announcement.content | markdownify }}</div>
+                        {% if announcement.link_url and announcement.link_text %}
+                          <a href="{{ announcement.link_url }}" class="btn btn-sm btn-outline-primary">{{ announcement.link_text }}</a>
+                        {% endif %}
+                      </div>
+                      {% if announcement.priority == "High" %}
+                        <span class="badge bg-danger">High Priority</span>
                       {% endif %}
                     </div>
-                    {% if announcement.priority == "High" %}
-                      <span class="badge bg-danger">High Priority</span>
-                    {% endif %}
-                  </div>
-                </li>
-              {% endif %}
-            {% endfor %}
-          </ul>
+                  </li>
+                {% endif %}
+              {% endfor %}
+            </ul>
+          {% else %}
+            <div class="p-3 text-center text-muted">
+              No current announcements.
+            </div>
+          {% endif %}
         {% else %}
           <div class="p-3 text-center text-muted">
             No current announcements.
