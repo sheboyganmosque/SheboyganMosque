@@ -88,22 +88,22 @@ title: Events Calendar
     <h2 class="h4 mb-3">Upcoming Events</h2>
     <div class="upcoming-events">
       {% if site.events and site.events.size > 0 %}
-        {% assign current_time = site.time | date: '%s' %}
+        {% assign current_date = site.time | date: '%Y-%m-%d' %}
         {% assign one_time_events = site.events | where: "type", "one-time" | sort: "date" %}
         {% assign has_upcoming_events = false %}
         
         {% for event in one_time_events %}
-          {% assign event_time = event.date | date: '%s' %}
-          {% if event_time >= current_time %}
+          {% assign event_date = event.date | date: '%Y-%m-%d' %}
+          {% if event_date >= current_date %}
             {% assign has_upcoming_events = true %}
             <div class="card mb-3">
               <div class="card-body">
                 <h3 class="h5 mb-2">{{ event.title }}</h3>
                 <p class="text-muted mb-2">
                   <i class="far fa-calendar-alt me-1"></i> {{ event.date | date: "%B %d, %Y" }}<br>
-                  <i class="far fa-clock me-1"></i> {{ event.date | date: "%I:%M %p" }}
-                  {% if event.end_date %}
-                  - {{ event.end_date | date: "%I:%M %p" }}
+                  <i class="far fa-clock me-1"></i> {{ event.start_time }}
+                  {% if event.end_time %}
+                  - {{ event.end_time }}
                   {% endif %}
                 </p>
                 {% if event.location %}
