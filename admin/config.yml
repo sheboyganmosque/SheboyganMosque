@@ -40,23 +40,6 @@ collections:
       - {label: "Recurrence Pattern", name: "recurrence", widget: "select", options: ["Daily", "Weekly", "Monthly"], required: false}
       - {label: "Body", name: "body", widget: "markdown"}
 
-  # Static pages
-  - name: "pages"
-    label: "Pages"
-    folder: "pages"
-    create: true
-    slug: "{{slug}}"
-    preview_path: "pages/{{slug}}"
-    editor:
-      preview: true
-    fields:
-      - {label: "Layout", name: "layout", widget: "hidden", default: "page"}
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Subtitle", name: "subtitle", widget: "string", required: false}
-      - {label: "Permalink", name: "permalink", widget: "string", pattern: ['^/pages/[a-z0-9-]+/?$', "Must start with /pages/"]}
-      - {label: "Featured Image", name: "thumbnail", widget: "image", required: false}
-      - {label: "Body", name: "body", widget: "markdown"}
-
   # Settings and configuration
   - name: "settings"
     label: "Settings"
@@ -67,31 +50,37 @@ collections:
       - name: "prayer-times"
         label: "Prayer Times"
         file: "_data/prayer_times.yml"
-        description: "Prayer times configuration"
+        description: "Configure prayer times calculation settings and Jumu'ah prayer time"
         fields:
-          - label: "Prayer Time Settings"
+          - label: "Calculation Settings"
             name: "settings"
             widget: "object"
+            collapsed: false
             fields:
-              - {label: "Calculation Method", name: "method", widget: "select", options: ["ISNA", "MWL", "Egyptian", "Karachi", "Makkah"], default: "ISNA"}
-              - {label: "Juristic Method (Asr)", name: "asr_method", widget: "select", options: ["Standard", "Hanafi"], default: "Standard"}
-              - {label: "DST Adjustment", name: "dst", widget: "boolean", default: true}
-          - label: "Adjustments (Minutes)"
+              - {label: "Calculation Method", name: "method", widget: "select", options: ["ISNA", "MWL", "Egyptian", "Karachi", "Makkah"], default: "ISNA", hint: "Select the calculation method for prayer times"}
+              - {label: "Juristic Method (Asr)", name: "asr_method", widget: "select", options: ["Standard", "Hanafi"], default: "Standard", hint: "Select the juristic method for Asr prayer time"}
+              - {label: "Daylight Saving Time", name: "dst", widget: "boolean", default: true, hint: "Enable if your location observes daylight saving time"}
+
+          - label: "Time Adjustments"
             name: "adjustments"
             widget: "object"
+            collapsed: false
+            description: "Use these adjustments to set iqamah times. For example, if Fajr athan is at 5:30 AM and you want iqamah at 5:45 AM, set Fajr to +15 minutes."
             fields:
-              - {label: "Fajr", name: "fajr", widget: "number", default: 0}
-              - {label: "Sunrise", name: "sunrise", widget: "number", default: 0}
-              - {label: "Dhuhr", name: "dhuhr", widget: "number", default: 0}
-              - {label: "Asr", name: "asr", widget: "number", default: 0}
-              - {label: "Maghrib", name: "maghrib", widget: "number", default: 0}
-              - {label: "Isha", name: "isha", widget: "number", default: 0}
+              - {label: "Fajr (minutes)", name: "fajr", widget: "number", default: 0, hint: "Add minutes to athan time for iqamah (e.g., +15 for 15 minutes after athan)"}
+              - {label: "Sunrise (minutes)", name: "sunrise", widget: "number", default: 0, hint: "Add minutes to athan time for iqamah (e.g., +15 for 15 minutes after athan)"}
+              - {label: "Dhuhr (minutes)", name: "dhuhr", widget: "number", default: 0, hint: "Add minutes to athan time for iqamah (e.g., +15 for 15 minutes after athan)"}
+              - {label: "Asr (minutes)", name: "asr", widget: "number", default: 0, hint: "Add minutes to athan time for iqamah (e.g., +15 for 15 minutes after athan)"}
+              - {label: "Maghrib (minutes)", name: "maghrib", widget: "number", default: 0, hint: "Add minutes to athan time for iqamah (e.g., +15 for 15 minutes after athan)"}
+              - {label: "Isha (minutes)", name: "isha", widget: "number", default: 0, hint: "Add minutes to athan time for iqamah (e.g., +15 for 15 minutes after athan)"}
+
           - label: "Jumu'ah Prayer"
             name: "jumuah"
             widget: "object"
+            collapsed: false
             fields:
-              - {label: "Time", name: "time", widget: "string", default: "1:10 PM"}
-              - {label: "Note", name: "note", widget: "string", required: false}
+              - {label: "Jumu'ah Time", name: "time", widget: "string", default: "1:10 PM", hint: "Enter the time for Friday prayer (Jumu'ah) in 12-hour format (e.g., 1:10 PM)"}
+              - {label: "Additional Notes", name: "note", widget: "string", required: false, hint: "Add any additional notes about Jumu'ah prayer"}
 
       # Team/Leadership
       - name: "team"
@@ -118,17 +107,25 @@ collections:
             name: "main"
             widget: "list"
             fields:
-              - {label: "Text", name: "text", widget: "string"}
+              - {label: "Label", name: "label", widget: "string"}
               - {label: "URL", name: "url", widget: "string"}
-              - {label: "Open in New Window", name: "target_blank", widget: "boolean", default: false, required: false}
-              - label: "Dropdown Items"
-                name: "dropdown"
-                widget: "list"
-                required: false
-                fields:
-                  - {label: "Text", name: "text", widget: "string"}
-                  - {label: "URL", name: "url", widget: "string"}
-                  - {label: "Open in New Window", name: "target_blank", widget: "boolean", default: false, required: false}
+
+      # Regular Events
+      - name: "regular_events"
+        label: "Regular Events"
+        file: "_data/regular_events.yml"
+        description: "Manage regular weekly/monthly events"
+        fields:
+          - label: "Regular Events"
+            name: "events"
+            widget: "list"
+            fields:
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Description", name: "description", widget: "string"}
+              - {label: "Day", name: "day", widget: "select", options: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]}
+              - {label: "Time", name: "time", widget: "string"}
+              - {label: "Location", name: "location", widget: "string", default: "Islamic Society of Sheboygan"}
+              - {label: "Notes", name: "notes", widget: "string", required: false}
 
       # Homepage configuration
       - name: "homepage"
@@ -149,3 +146,22 @@ collections:
               - {label: "Content", name: "content", widget: "markdown"}
               - {label: "Link Text", name: "link_text", widget: "string", default: "Read More"}
               - {label: "Link URL", name: "link_url", widget: "string"}
+
+      # Announcements
+      - name: "announcements"
+        label: "Announcements"
+        file: "_data/announcements.yml"
+        description: "Manage site announcements"
+        fields:
+          - label: "Active Announcements"
+            name: "active"
+            widget: "list"
+            required: false
+            fields:
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Content", name: "content", widget: "markdown"}
+              - {label: "Start Date", name: "start_date", widget: "datetime", required: false}
+              - {label: "End Date", name: "end_date", widget: "datetime", required: false}
+              - {label: "Priority", name: "priority", widget: "select", options: ["High", "Medium", "Low"], default: "Medium"}
+              - {label: "Link Text", name: "link_text", widget: "string", required: false}
+              - {label: "Link URL", name: "link_url", widget: "string", required: false}

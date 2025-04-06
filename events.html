@@ -12,6 +12,45 @@ title: Events Calendar
 
 <div class="events-content py-4">
   <div class="container">
+    <!-- Announcements -->
+    <div class="card mb-4">
+      <div class="card-header bg-primary text-white">
+        <h2 class="h5 mb-0">Announcements</h2>
+      </div>
+      <div class="card-body p-0">
+        {% assign announcements = site.data.announcements.active | sort: "priority" | reverse %}
+        {% if announcements.size > 0 %}
+          <ul class="list-group list-group-flush">
+            {% for announcement in announcements %}
+              {% assign now = site.time | date: '%s' %}
+              {% assign start = announcement.start_date | date: '%s' | default: 0 %}
+              {% assign end = announcement.end_date | date: '%s' | default: 9999999999 %}
+              {% if now >= start and now <= end %}
+                <li class="list-group-item">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                      <h5 class="mb-1">{{ announcement.title }}</h5>
+                      <div class="text-muted mb-2">{{ announcement.content | markdownify }}</div>
+                      {% if announcement.link_url and announcement.link_text %}
+                        <a href="{{ announcement.link_url }}" class="btn btn-sm btn-outline-primary">{{ announcement.link_text }}</a>
+                      {% endif %}
+                    </div>
+                    {% if announcement.priority == "High" %}
+                      <span class="badge bg-danger">High Priority</span>
+                    {% endif %}
+                  </div>
+                </li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        {% else %}
+          <div class="p-3 text-center text-muted">
+            No current announcements.
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
     <!-- Regular Events -->
     <div class="card mb-4">
       <div class="card-header bg-primary text-white">
@@ -19,30 +58,20 @@ title: Events Calendar
       </div>
       <div class="card-body p-0">
         <ul class="list-group list-group-flush">
-          <li class="list-group-item">
-            <div class="d-flex justify-content-between align-items-center">
-              <div>
-                <h5 class="mb-1">Friday Prayer (Jumu'ah)</h5>
-                <p class="mb-0 text-muted">Every Friday at 1:10 PM</p>
+          {% for event in site.data.regular_events.events %}
+            <li class="list-group-item">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <h5 class="mb-1">{{ event.title }}</h5>
+                  <p class="mb-0 text-muted">{{ event.description }}</p>
+                  <p class="mb-0 text-muted">Every {{ event.day }} at {{ event.time }}</p>
+                  {% if event.notes %}
+                    <p class="mb-0 text-muted"><small>{{ event.notes }}</small></p>
+                  {% endif %}
+                </div>
               </div>
-            </div>
-          </li>
-          <li class="list-group-item">
-            <div class="d-flex justify-content-between align-items-center">
-              <div>
-                <h5 class="mb-1">Quran Jalsa</h5>
-                <p class="mb-0 text-muted">Every Saturday after Maghrib</p>
-              </div>
-            </div>
-          </li>
-          <li class="list-group-item">
-            <div class="d-flex justify-content-between align-items-center">
-              <div>
-                <h5 class="mb-1">Youth Sunday School</h5>
-                <p class="mb-0 text-muted">Every Sunday at 9:30 AM</p>
-              </div>
-            </div>
-          </li>
+            </li>
+          {% endfor %}
         </ul>
       </div>
     </div>

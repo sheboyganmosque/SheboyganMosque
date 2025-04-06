@@ -1,0 +1,21 @@
+events:
+  - title: "Friday Prayer (Jumu'ah)"
+    description: "Weekly congregational prayer"
+    day: "Friday"
+    time: "1:10 PM"
+    location: "Islamic Society of Sheboygan"
+    notes: ""
+
+  - title: "Quran Jalsa"
+    description: "Weekly Quran recitation gathering"
+    day: "Saturday"
+    time: "After Maghrib"
+    location: "Islamic Society of Sheboygan"
+    notes: ""
+
+  - title: "Youth Sunday School"
+    description: "Islamic education for youth"
+    day: "Sunday"
+    time: "9:30 AM"
+    location: "Islamic Society of Sheboygan"
+    notes: "" 
