@@ -49,18 +49,13 @@ permalink: /prayer/
         <div class="card-body">
           <div class="jumu-ah-info text-center">
             <p class="lead">Friday Prayer (Jumu'ah)</p>
-            {% for jumua in site.data.prayer_times.jumua_times %}
-              <div class="jumua-time">
-                <p>
-                  <strong>{{ jumua.time }}</strong> at {{ jumua.location }}
-                  {% if jumua.notes != "" %}
-                    <br><small>{{ jumua.notes }}</small>
-                  {% endif %}
-                </p>
-                <p>Khutbah starts promptly at {{ jumua.time }} followed by prayer.</p>
-                <p>Please arrive early to secure a spot in the prayer hall.</p>
-              </div>
-            {% endfor %}
+            <div class="jumua-time">
+              <p>
+                <strong>1:10 PM</strong> at Islamic Society of Sheboygan
+              </p>
+              <p>Khutbah starts promptly at 1:10 PM followed by prayer.</p>
+              <p>Please arrive early to secure a spot in the prayer hall.</p>
+            </div>
           </div>
         </div>
       </div>
