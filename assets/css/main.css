@@ -33,7 +33,7 @@ div,
 input,
 textarea,
 button {
-  font-family: 'Poppins', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
 body {
@@ -44,7 +44,6 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Poppins', sans-serif;
   font-weight: 600;
   color: var(--primary);
 }
@@ -388,11 +387,9 @@ a:hover {
 
 /* New styles */
 .navbar-brand {
-  font-family: 'Poppins', sans-serif;
   font-weight: 600;
 }
 
 .btn {
-  font-family: 'Poppins', sans-serif;
   font-weight: 500;
 }
