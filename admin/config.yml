@@ -6,6 +6,21 @@ media_folder: "assets/images/uploads"
 public_folder: "/assets/images/uploads"
 
 collections:
+  - name: "prayer_times"
+    label: "Prayer Times"
+    folder: "_prayer_times"
+    create: true
+    fields:
+      - {label: "Title", name: "title", widget: "string", default: "Daily Prayer Schedule"}
+      - {label: "Fajr", name: "fajr", widget: "string", hint: "e.g., '5:30 AM'"}
+      - {label: "Dhuhr", name: "dhuhr", widget: "string", hint: "e.g., '1:30 PM'"}
+      - {label: "Asr", name: "asr", widget: "string", hint: "e.g., '4:30 PM'"}
+      - {label: "Maghrib", name: "maghrib", widget: "string", hint: "e.g., '7:30 PM'"}
+      - {label: "Isha", name: "isha", widget: "string", hint: "e.g., '9:00 PM'"}
+      - {label: "Jumu'ah 1", name: "jumuah1", widget: "string", hint: "First Jumu'ah prayer time (e.g., '1:30 PM')"}
+      - {label: "Jumu'ah 2", name: "jumuah2", widget: "string", hint: "Second Jumu'ah prayer time (e.g., '2:30 PM')", required: false}
+      - {label: "Notes", name: "notes", widget: "text", required: false, hint: "Any special notes about prayer times"}
+
   - name: "events"
     label: "Events"
     folder: "_events"
