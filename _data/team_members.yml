@@ -1,18 +1,13 @@
 members:
-  - name: "Abdelouahid Souala"
-    position: "President"
-
-  - name: "Mahmud Haleem"
-    position: "Vice President"
-
-  - name: "Dr. Mansoor Mirza"
-    position: "Director of Public Relations"
-
-  - name: "Lerim Demiri"
-    position: "Treasurer"
-
-  - name: "Fatmeh Ferhud"
-    position: "Director"
-
-  - name: "Wageeh Darwish"
-    position: "Imam" 
+  - name: Abdelouahid Souala
+    position: President
+  - name: Mahmud Haleem
+    position: Vice President
+  - name: Dr. Mansoor Mirza
+    position: Director of Public Relations
+  - name: Lerim Demiri
+    position: Treasurer
+  - name: Fatmeh Ferhud
+    position: Director
+  - name: Wageeh Darwish
+    position: Imam
