@@ -1,0 +1,91 @@
+---
+layout: page
+title: "Contact"
+subtitle: "Get in touch with Islamic Society of Sheboygan"
+permalink: /contact/
+---
+
+<div class="container py-4">
+  <div class="row">
+    <!-- Contact Form -->
+    <div class="col-md-6 mb-4">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="h5 mb-3">Send us a Message</h2>
+          <form id="contact-form">
+            <div class="mb-3">
+              <input type="text" class="form-control" placeholder="Your Name" required>
+            </div>
+            
+            <div class="mb-3">
+              <input type="email" class="form-control" placeholder="Your Email" required>
+            </div>
+            
+            <div class="mb-3">
+              <textarea class="form-control" rows="4" placeholder="Your Message" required></textarea>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact Information -->
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="h5 mb-3">Contact Information</h2>
+          <div class="mb-3">
+            <i class="fas fa-map-marker-alt me-2"></i>
+            Islamic Society of Sheboygan<br>
+            123 Main Street<br>
+            Sheboygan, WI 53081
+          </div>
+          
+          <div class="mb-3">
+            <i class="fas fa-phone me-2"></i>
+            (555) 123-4567
+          </div>
+          
+          <div class="mb-3">
+            <i class="fas fa-envelope me-2"></i>
+            info@islamicsocietysheboygan.org
+          </div>
+
+          <div class="mt-3">
+            <h3 class="h6 mb-2">Office Hours</h3>
+            <p class="mb-0">
+              Monday - Friday: 10:00 AM - 4:00 PM<br>
+              Saturday: By appointment<br>
+              Sunday: 9:00 AM - 2:00 PM
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Map -->
+  <div class="row mt-4">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="h5 mb-3">Location</h2>
+          <div class="ratio ratio-16x9">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3082.6627109701258!2d-87.77461802382366!3d43.644490171102554!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8804a49cb675a77f%3A0xaa465b2014abf05a!2sIslamic%20Society%20of%20Sheboygan!5e1!3m2!1sen!2sus!4v1743903845870!5m2!1sen!2sus" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+document.getElementById('contact-form').addEventListener('submit', function(event) {
+  event.preventDefault();
+  // Add your form submission logic here
+  alert('Thank you for your message. We will get back to you soon.');
+  this.reset();
+});
+</script>

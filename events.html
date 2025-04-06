@@ -1,0 +1,87 @@
+---
+layout: default
+title: Events Calendar
+---
+
+<div class="page-header py-4 bg-light">
+  <div class="container">
+    <h1 class="page-title h3 mb-2">{{ page.title }}</h1>
+    <p class="text-muted">Stay informed about upcoming events and regular prayers at Islamic Society of Sheboygan.</p>
+  </div>
+</div>
+
+<div class="events-content py-4">
+  <div class="container">
+    <!-- Regular Events -->
+    <div class="card mb-4">
+      <div class="card-header bg-primary text-white">
+        <h2 class="h5 mb-0">Regular Events</h2>
+      </div>
+      <div class="card-body p-0">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <h5 class="mb-1">Friday Prayer (Jumu'ah)</h5>
+                <p class="mb-0 text-muted">Every Friday at 1:10 PM</p>
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <h5 class="mb-1">Quran Jalsa</h5>
+                <p class="mb-0 text-muted">Every Saturday after Maghrib</p>
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <h5 class="mb-1">Youth Sunday School</h5>
+                <p class="mb-0 text-muted">Every Sunday at 9:30 AM</p>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Upcoming Events -->
+    <h2 class="h4 mb-3">Upcoming Events</h2>
+    <div class="upcoming-events">
+      {% assign upcoming_events = site.events | where_exp: "event", "event.start_date >= site.time" | sort: "start_date" %}
+      
+      {% for event in upcoming_events %}
+      <div class="card mb-3">
+        <div class="card-body">
+          <h3 class="h5 mb-2">
+            <a href="{{ event.url | relative_url }}" class="text-decoration-none">{{ event.title }}</a>
+          </h3>
+          <p class="text-muted mb-2">
+            <i class="far fa-calendar-alt me-1"></i> {{ event.start_date | date: "%B %d, %Y" }}<br>
+            <i class="far fa-clock me-1"></i> {{ event.start_date | date: "%I:%M %p" }}
+            {% if event.end_date %}
+            - {{ event.end_date | date: "%I:%M %p" }}
+            {% endif %}
+          </p>
+          {% if event.location %}
+          <p class="text-muted mb-2">
+            <i class="fas fa-map-marker-alt me-1"></i> {{ event.location }}
+          </p>
+          {% endif %}
+          {% if event.excerpt %}
+          <p class="text-muted mb-0">{{ event.excerpt }}</p>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+      
+      {% if upcoming_events.size == 0 %}
+      <div class="alert alert-info">
+        <p class="mb-0">No upcoming events scheduled at this time. Please check back soon for new events.</p>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>

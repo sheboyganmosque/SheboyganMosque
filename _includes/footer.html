@@ -1,0 +1,59 @@
+<footer class="site-footer bg-dark text-white py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 mb-4 mb-lg-0">
+        <h5 class="text-uppercase mb-3">Islamic Society of Sheboygan</h5>
+        <p><i class="fas fa-map-marker-alt me-2"></i> 9110 County Road A, Sheboygan, WI 53083</p>
+        <p><i class="fas fa-phone me-2"></i> (920) 467-0599</p>
+        <p><i class="fas fa-envelope me-2"></i> <a href="mailto:contact@islamicsocietysheboygan.org" class="text-light">contact@islamicsocietysheboygan.org</a></p>
+      </div>
+      
+      <div class="col-lg-4 mb-4 mb-lg-0">
+        <h5 class="text-uppercase mb-3">Quick Links</h5>
+        <ul class="list-unstyled footer-links">
+          <li><a href="{{ '/' | relative_url }}" class="text-light">Home</a></li>
+          <li><a href="{{ '/prayer' | relative_url }}" class="text-light">Prayer Times</a></li>
+          <li><a href="{{ '/events' | relative_url }}" class="text-light">Events</a></li>
+          <li><a href="{{ '/announcements' | relative_url }}" class="text-light">Announcements</a></li>
+          <li><a href="{{ '/about' | relative_url }}" class="text-light">Leadership</a></li>
+          <li><a href="{{ '/contact' | relative_url }}" class="text-light">Contact</a></li>
+          <li><a href="{{ '/donate' | relative_url }}" class="text-light">Donate</a></li>
+        </ul>
+      </div>
+      
+      <div class="col-lg-4">
+        <h5 class="text-uppercase mb-3">Join Our Community</h5>
+        <p>Request to be added to our WhatsApp group to stay connected and receive updates.</p>
+        <form id="whatsapp-form" class="whatsapp-form">
+          <div class="mb-3">
+            <label for="name" class="form-label text-white">Your Name*</label>
+            <input type="text" class="form-control" id="name" name="from_name" required>
+          </div>
+          <div class="mb-3">
+            <label for="phone" class="form-label text-white">Phone Number*</label>
+            <input type="tel" class="form-control" id="phone" name="phone" required>
+          </div>
+          <div class="mb-3">
+            <label for="message" class="form-label text-white">Message (Optional)</label>
+            <textarea class="form-control" id="message" name="message" rows="2"></textarea>
+          </div>
+          <div id="form-status" class="alert d-none mb-3"></div>
+          <button type="submit" class="btn btn-primary w-100">Request to Join</button>
+        </form>
+        <div class="social-links mt-4">
+          <!-- Social media links will be added when accounts are created -->
+        </div>
+      </div>
+    </div>
+    
+    <hr class="my-4 bg-light">
+    
+    <div class="row">
+      <div class="col-md-6">
+        <p class="mb-0">&copy; {{ 'now' | date: "%Y" }} Islamic Society of Sheboygan. All Rights Reserved.</p>
+      </div>
+      <div class="col-md-6 text-md-end">
+      </div>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,118 @@
+# Cline Rules for Islamic Society of Sheboygan Website
+
+## Project Intelligence
+
+This document captures key insights and patterns for the Islamic Society of Sheboygan website project that may not be immediately obvious from the code or documentation alone.
+
+## Critical Implementation Paths
+
+1. **Prayer Times Calculation**
+   - Uses Aladhan API (https://aladhan.com/prayer-times-api)
+   - All times must be shown in Central Time (America/Chicago timezone)
+   - Prayer times include Fajr, Sunrise, Dhuhr, Asr, Maghrib, and Isha
+   - ISNA calculation method (method=2) is used for consistency
+   - Fallback to mock data if API fails
+   - Timezone handling uses Intl.DateTimeFormat for localized display
+   - Displays countdown to next prayer
+
+2. **Jekyll Content Management**
+   - All content follows front matter + Markdown pattern
+   - Blog posts must be in `_posts` directory with `YYYY-MM-DD-title.md` naming
+   - Events must be in `_events` directory with similar date-based naming
+   - Using collections for custom content types
+   - Template inheritance flows from default → specific layouts
+   - Components in _includes are meant to be reusable
+
+3. **Netlify CMS Integration**
+   - Admin interface at `/admin` path
+   - Content models defined in `admin/config.yml`
+   - GitHub authentication backend
+   - Media uploads go to `assets/images/uploads`
+   - Custom widgets used for specialized inputs
+
+## User Preferences and Workflow
+
+1. **Design Preferences**
+   - Primary color: Dark green (#006400) - Islamic significance
+   - Secondary color: Medium green (#4caf50)
+   - Accent color: Gold/Amber (#f39c12)
+   - White space and clean typography are important
+   - Avoid images of people when possible (cultural consideration)
+   - Mobile-first design approach
+   - Use Islamic patterns and motifs where appropriate
+
+2. **Content Structure**
+   - Keep paragraphs short (3-5 sentences max)
+   - Use headers to break up content
+   - Include call-to-action elements
+   - Formal but approachable tone
+   - Avoid religious debates or contentious topics
+   - Focus on community and education
+
+## Project-Specific Patterns
+
+1. **Component Naming**
+   - PascalCase for layouts
+   - kebab-case for includes and partials
+   - snake_case for data files
+   - Use descriptive prefixes for related components
+
+2. **CSS Organization**
+   - Component-specific styles near component declaration
+   - Global styles in main.css
+   - Custom variables in :root declaration
+   - Mobile-first media queries
+   - Utility classes with meaningful names
+
+3. **JavaScript Patterns**
+   - Function-based component organization
+   - Event delegation for dynamic elements
+   - Try/catch around API calls with fallbacks
+   - Cache API responses in localStorage
+   - Clear, descriptive function and variable names
+
+## Known Challenges
+
+1. **API Limitations**
+   - Aladhan API has no authentication but may have rate limits
+   - Plan for graceful fallbacks and caching
+   - Monitor for API changes or deprecations
+
+2. **Browser Compatibility**
+   - Site uses modern JavaScript features (ES6+)
+   - No IE11 support required (deprecated)
+   - Test on Chrome, Firefox, Safari, and Edge
+   - Monitor for issues on older iOS devices
+
+3. **Ruby Dependency Management**
+   - Ruby 3.4+ needs explicit libraries (csv, base64, logger)
+   - Match Gemfile.lock to Ruby version in use
+   - Test with Ruby version on GitHub Pages
+
+## Evolution of Project Decisions
+
+1. Initial design was simpler, evolved to include more interactive elements
+2. Started with static prayer times, then added API integration
+3. Added time zone handling to ensure consistent times regardless of user location
+4. Enhanced content model to support recurring events
+5. Migrated from simple CSS to Bootstrap 5 framework
+
+## Tool Usage Patterns
+
+1. **Jekyll Commands**
+   - `bundle exec jekyll serve` for local development
+   - `bundle exec jekyll build` for production builds
+   - `bundle exec jekyll serve --livereload` for auto-refresh
+   - `bundle exec jekyll doctor` to check for common problems
+
+2. **Git Workflow**
+   - Commit messages should be descriptive and use imperative mood
+   - Focus commits on single logical changes
+   - Use feature branches for major changes
+   - Main branch should always be deployable
+
+3. **CSS Approach**
+   - Bootstrap 5 as foundation
+   - Custom variables for theming
+   - Limited custom CSS for specific components
+   - Utility classes for minor adjustments

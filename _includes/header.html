@@ -1,0 +1,69 @@
+<header class="site-header">
+  <nav class="navbar navbar-expand-lg navbar-light bg-white">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="{{ '/' | relative_url }}">
+        <img src="{{ site.logo | relative_url }}" alt="{{ site.title }} Logo" height="50" class="me-2">
+        <span class="site-title">Islamic Society of Sheboygan</span>
+      </a>
+      
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item me-2">
+            <a class="nav-link {% if page.url == '/' %}active{% endif %}" href="{{ '/' | relative_url }}">Home</a>
+          </li>
+          
+          <li class="nav-item me-2">
+            <a class="nav-link {% if page.url contains '/prayer' %}active{% endif %}" href="{{ '/prayer' | relative_url }}">Prayer Times</a>
+          </li>
+          
+          <li class="nav-item me-2">
+            <a class="nav-link {% if page.url contains '/events' %}active{% endif %}" href="{{ '/events' | relative_url }}">Events</a>
+          </li>
+          
+          <li class="nav-item me-2">
+            <a class="nav-link {% if page.url contains '/announcements' %}active{% endif %}" href="{{ '/announcements' | relative_url }}">Announcements</a>
+          </li>
+          
+          <li class="nav-item me-2">
+            <a class="nav-link {% if page.url contains '/about' %}active{% endif %}" href="{{ '/about' | relative_url }}">Leadership</a>
+          </li>
+          
+          <li class="nav-item me-2">
+            <a class="nav-link {% if page.url contains '/contact' %}active{% endif %}" href="{{ '/contact' | relative_url }}">Contact</a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link donate-link {% if page.url contains '/donate' %}active{% endif %}" 
+               href="{{ '/donate' | relative_url }}">Donate</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  {% if page.layout == 'home' %}
+  <div class="prayer-times-banner">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="next-prayer" id="next-prayer-container">
+            <h4>Next Prayer</h4>
+            <div class="prayer-info">
+              <span class="prayer-name" id="next-prayer-name">Loading...</span>
+              <span class="prayer-time" id="next-prayer-time"></span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 text-md-end">
+          <a href="{{ '/prayer' | relative_url }}" class="btn btn-outline-light btn-sm">Full Prayer Schedule</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+</header>

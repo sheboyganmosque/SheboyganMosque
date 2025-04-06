@@ -1,0 +1,173 @@
+backend:
+  name: git-gateway
+  branch: main # Branch to update
+
+# When testing locally with the netlify-cms-proxy-server
+local_backend: true
+
+# Media folder where uploaded images will be saved in the repo
+media_folder: "assets/images/uploads"
+# Public folder where the images will be accessed in the built site
+public_folder: "/assets/images/uploads"
+
+# Enable editorial workflow (drafts, review, publish)
+publish_mode: editorial_workflow
+
+# Define collections
+collections:
+  # Blog posts
+  - name: "blog"
+    label: "Blog Posts"
+    folder: "_posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    preview_path: "blog/{{year}}/{{month}}/{{day}}/{{slug}}"
+    editor:
+      preview: true
+    fields:
+      - {label: "Layout", name: "layout", widget: "hidden", default: "post"}
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Author", name: "author", widget: "string", required: false}
+      - {label: "Featured Image", name: "thumbnail", widget: "image", required: false}
+      - {label: "Category", name: "category", widget: "select", options: ["Announcements", "Community News", "Islamic Guidance"], required: false}
+      - {label: "Tags", name: "tags", widget: "list", required: false}
+      - {label: "Body", name: "body", widget: "markdown"}
+
+  # Events
+  - name: "events"
+    label: "Events"
+    folder: "_events"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    preview_path: "events/{{slug}}"
+    editor:
+      preview: true
+    fields:
+      - {label: "Layout", name: "layout", widget: "hidden", default: "event"}
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Start Date & Time", name: "start_date", widget: "datetime"}
+      - {label: "End Date & Time", name: "end_date", widget: "datetime", required: false}
+      - {label: "Location", name: "location", widget: "string", default: "Islamic Society of Sheboygan"}
+      - {label: "Featured Image", name: "thumbnail", widget: "image", required: false}
+      - {label: "Organizer", name: "organizer", widget: "string", required: false}
+      - {label: "Contact Email", name: "contact_email", widget: "string", required: false}
+      - {label: "Contact Phone", name: "contact_phone", widget: "string", required: false}
+      - {label: "Registration URL", name: "registration_url", widget: "string", required: false}
+      - {label: "Registration Email", name: "registration_email", widget: "string", required: false}
+      - {label: "Is Recurring Event?", name: "recurring", widget: "boolean", default: false}
+      - {label: "Recurrence Pattern", name: "recurrence", widget: "select", options: ["Daily", "Weekly", "Monthly"], required: false}
+      - {label: "Body", name: "body", widget: "markdown"}
+
+  # Static pages
+  - name: "pages"
+    label: "Pages"
+    folder: "pages"
+    create: true
+    slug: "{{slug}}"
+    preview_path: "pages/{{slug}}"
+    editor:
+      preview: true
+    fields:
+      - {label: "Layout", name: "layout", widget: "hidden", default: "page"}
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Subtitle", name: "subtitle", widget: "string", required: false}
+      - {label: "Permalink", name: "permalink", widget: "string", pattern: ['^/pages/[a-z0-9-]+/?$', "Must start with /pages/"]}
+      - {label: "Featured Image", name: "thumbnail", widget: "image", required: false}
+      - {label: "Body", name: "body", widget: "markdown"}
+
+  # Settings and configuration
+  - name: "settings"
+    label: "Settings"
+    editor:
+      preview: false
+    files:
+      # Prayer Times
+      - name: "prayer-times"
+        label: "Prayer Times"
+        file: "_data/prayer_times.yml"
+        description: "Prayer times configuration"
+        fields:
+          - label: "Prayer Time Settings"
+            name: "settings"
+            widget: "object"
+            fields:
+              - {label: "Calculation Method", name: "method", widget: "select", options: ["ISNA", "MWL", "Egyptian", "Karachi", "Makkah"], default: "ISNA"}
+              - {label: "Juristic Method (Asr)", name: "asr_method", widget: "select", options: ["Standard", "Hanafi"], default: "Standard"}
+              - {label: "DST Adjustment", name: "dst", widget: "boolean", default: true}
+          - label: "Adjustments (Minutes)"
+            name: "adjustments"
+            widget: "object"
+            fields:
+              - {label: "Fajr", name: "fajr", widget: "number", default: 0}
+              - {label: "Sunrise", name: "sunrise", widget: "number", default: 0}
+              - {label: "Dhuhr", name: "dhuhr", widget: "number", default: 0}
+              - {label: "Asr", name: "asr", widget: "number", default: 0}
+              - {label: "Maghrib", name: "maghrib", widget: "number", default: 0}
+              - {label: "Isha", name: "isha", widget: "number", default: 0}
+          - label: "Jumu'ah Prayer"
+            name: "jumuah"
+            widget: "object"
+            fields:
+              - {label: "Time", name: "time", widget: "string", default: "1:10 PM"}
+              - {label: "Note", name: "note", widget: "string", required: false}
+
+      # Team/Leadership
+      - name: "team"
+        label: "Team Members"
+        file: "_data/team_members.yml"
+        description: "Leadership team information"
+        fields:
+          - label: "Team Members"
+            name: "members"
+            widget: "list"
+            fields:
+              - {label: "Name", name: "name", widget: "string"}
+              - {label: "Position", name: "position", widget: "string"}
+              - {label: "Photo", name: "photo", widget: "image", required: false}
+              - {label: "Bio", name: "bio", widget: "markdown", required: false}
+              - {label: "Order (for sorting)", name: "order", widget: "number", default: 99}
+              - {label: "Email", name: "email", widget: "string", required: false}
+              - {label: "Phone", name: "phone", widget: "string", required: false}
+
+      # Navigation
+      - name: "navigation"
+        label: "Navigation Menu"
+        file: "_data/navigation.yml"
+        description: "Site navigation configuration"
+        fields:
+          - label: "Main Menu Items"
+            name: "main"
+            widget: "list"
+            fields:
+              - {label: "Text", name: "text", widget: "string"}
+              - {label: "URL", name: "url", widget: "string"}
+              - {label: "Open in New Window", name: "target_blank", widget: "boolean", default: false, required: false}
+              - label: "Dropdown Items"
+                name: "dropdown"
+                widget: "list"
+                required: false
+                fields:
+                  - {label: "Text", name: "text", widget: "string"}
+                  - {label: "URL", name: "url", widget: "string"}
+                  - {label: "Open in New Window", name: "target_blank", widget: "boolean", default: false, required: false}
+
+      # Homepage configuration
+      - name: "homepage"
+        label: "Homepage Settings"
+        file: "_data/homepage.yml"
+        description: "Homepage content configuration"
+        fields:
+          - {label: "Hero Title", name: "hero_title", widget: "string"}
+          - {label: "Hero Subtitle", name: "hero_subtitle", widget: "string"}
+          - {label: "Hero Image", name: "hero_image", widget: "image", required: false}
+          - label: "Featured Announcements"
+            name: "featured_announcements"
+            widget: "list"
+            required: false
+            max: 3
+            fields:
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Content", name: "content", widget: "markdown"}
+              - {label: "Link Text", name: "link_text", widget: "string", default: "Read More"}
+              - {label: "Link URL", name: "link_url", widget: "string"}

@@ -1,0 +1,52 @@
+# Site settings
+title: Islamic Society of Sheboygan
+email: contact@islamicsocietysheboygan.org
+description: >-
+  Islamic Society of Sheboygan provides a place of worship, education, and community 
+  engagement for Muslims in Sheboygan and surrounding areas.
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "" # the base hostname & protocol for your site, e.g. http://example.com
+logo: /assets/images/mosque-logo.png
+
+# Build settings
+markdown: kramdown
+theme: minima
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+# Collections
+collections:
+  events:
+    output: true
+    permalink: /events/:path/
+  team:
+    output: false
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+  - scope:
+      path: ""
+      type: "events"
+    values:
+      layout: "event"
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "page"
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/
+  - .gitignore
+  - README.md
