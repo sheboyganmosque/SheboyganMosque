@@ -23,6 +23,12 @@ collections:
     permalink: /posts/:year/:month/:day/:title/
   team:
     output: false
+  events:
+    output: true
+  announcements:
+    output: true
+  leadership:
+    output: true
 
 # Defaults
 defaults:
@@ -36,6 +42,21 @@ defaults:
       type: "pages"
     values:
       layout: "page"
+  - scope:
+      path: ""
+      type: "events"
+    values:
+      layout: "event"
+  - scope:
+      path: ""
+      type: "announcements"
+    values:
+      layout: "announcement"
+  - scope:
+      path: ""
+      type: "leadership"
+    values:
+      layout: "leadership"
 
 # Exclude from processing
 exclude:
