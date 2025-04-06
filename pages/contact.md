@@ -39,18 +39,18 @@ permalink: /contact/
           <div class="mb-3">
             <i class="fas fa-map-marker-alt me-2"></i>
             Islamic Society of Sheboygan<br>
-            123 Main Street<br>
-            Sheboygan, WI 53081
+            9110 Sauk Trail Rd<br>
+            Oostburg, WI 53070
           </div>
           
           <div class="mb-3">
             <i class="fas fa-phone me-2"></i>
-            (555) 123-4567
+            (920) 467-0599
           </div>
           
           <div class="mb-3">
             <i class="fas fa-envelope me-2"></i>
-            info@islamicsocietysheboygan.org
+            sheboyganmosque@gmail.com
           </div>
 
           <div class="mt-3">
