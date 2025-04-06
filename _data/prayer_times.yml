@@ -11,3 +11,5 @@ adjustments:
   isha: 0
 jumuah:
   time: 2:00 PM
+jumua_times:
+  - time: 13:10
