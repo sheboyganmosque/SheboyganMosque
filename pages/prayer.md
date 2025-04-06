@@ -5,6 +5,13 @@ subtitle: "Prayer information for Islamic Society of Sheboygan"
 permalink: /prayer/
 ---
 
+<script>
+  // Make prayer times settings available to JavaScript
+  window.siteData = {
+    prayer_times: {{ site.data.prayer_times | jsonify }}
+  };
+</script>
+
 <div class="prayer-times-section py-4">
   <div class="row mb-4">
     <div class="col-md-6">
@@ -42,8 +49,11 @@ permalink: /prayer/
         <div class="card-body">
           <div class="jumu-ah-info text-center">
             <p class="lead">Friday Prayer (Jumu'ah)</p>
-            <h2 class="display-6 mb-3">1:10 PM</h2>
-            <p>Khutbah starts promptly at 1:10 PM followed by prayer.</p>
+            <h2 class="display-6 mb-3">{{ site.data.prayer_times.jumuah.time }}</h2>
+            <p>Khutbah starts promptly at {{ site.data.prayer_times.jumuah.time }} followed by prayer.</p>
+            {% if site.data.prayer_times.jumuah.note %}
+              <p>{{ site.data.prayer_times.jumuah.note }}</p>
+            {% endif %}
             <p>Please arrive early to secure a spot in the prayer hall.</p>
           </div>
         </div>

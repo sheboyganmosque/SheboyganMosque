@@ -44,6 +44,34 @@ function initializePrayerTimes() {
   // Update the Hijri date on the prayer times page
   updateHijriDate(year, month, day);
   
+  // Get prayer times settings from the site data
+  const prayerSettings = window.siteData?.prayer_times?.settings || {
+    method: 'ISNA',
+    asr_method: 'Standard',
+    dst: true
+  };
+  
+  const adjustments = window.siteData?.prayer_times?.adjustments || {
+    fajr: 0,
+    sunrise: 0,
+    dhuhr: 0,
+    asr: 0,
+    maghrib: 0,
+    isha: 0
+  };
+
+  // Map calculation methods to API method numbers
+  const methodMap = {
+    'ISNA': 2,
+    'MWL': 3,
+    'Egyptian': 5,
+    'Karachi': 4,
+    'Makkah': 4
+  };
+
+  // Get the API method number
+  const apiMethod = methodMap[prayerSettings.method] || 2;
+  
   // Define mock prayer times as fallback in case API fails
   const mockPrayerTimes = {
     'fajr': '05:15 AM',
@@ -87,10 +115,10 @@ function initializePrayerTimes() {
   const formattedMonth = month.toString().padStart(2, '0');
   const formattedDay = day.toString().padStart(2, '0');
   
-  console.log(`Fetching prayer times for ${year}-${formattedMonth}-${formattedDay}`);
+  console.log(`Fetching prayer times for ${year}-${formattedMonth}-${formattedDay} using method ${apiMethod}`);
   
   // Use the Aladhan API to fetch prayer times
-  fetch(`https://api.aladhan.com/v1/timingsByCity/${year}-${formattedMonth}-${formattedDay}?city=Sheboygan&country=USA&method=2`)
+  fetch(`https://api.aladhan.com/v1/timingsByCity/${year}-${formattedMonth}-${formattedDay}?city=Sheboygan&country=USA&method=${apiMethod}`)
     .then(response => {
       if (!response.ok) {
         throw new Error(`API responded with status ${response.status}`);
@@ -98,40 +126,39 @@ function initializePrayerTimes() {
       return response.json();
     })
     .then(data => {
-      if (data.code === 200 && data.data && data.data.timings) {
-        console.log('Successfully fetched prayer times');
-        // Convert API response to our format
-        const timings = {
-          'fajr': formatTime12Hour(data.data.timings.Fajr),
-          'sunrise': formatTime12Hour(data.data.timings.Sunrise),
-          'dhuhr': formatTime12Hour(data.data.timings.Dhuhr),
-          'asr': formatTime12Hour(data.data.timings.Asr),
-          'maghrib': formatTime12Hour(data.data.timings.Maghrib),
-          'isha': formatTime12Hour(data.data.timings.Isha)
-        };
+      if (data.code === 200) {
+        const times = data.data.timings;
         
-        // Update UI with real prayer times
-        if (nextPrayerContainer) {
-          updateNextPrayer(timings);
-        }
-        
-        // Update prayer times table if it exists
-        if (prayerTable) {
-          populatePrayerTimesTable(prayerTable, timings);
-        }
-        
-        // Save to localStorage for caching
-        localStorage.setItem('prayerTimes', JSON.stringify({
+        // Apply adjustments from admin settings
+        Object.keys(adjustments).forEach(prayer => {
+          if (times[prayer]) {
+            const [hours, minutes] = times[prayer].split(':').map(Number);
+            const date = new Date();
+            date.setHours(hours, minutes + adjustments[prayer]);
+            times[prayer] = formatTime12Hour(date);
+          }
+        });
+
+        // Cache the results
+        const cacheData = {
           date: `${year}-${month}-${day}`,
-          times: timings
-        }));
+          times: times
+        };
+        localStorage.setItem('prayerTimes', JSON.stringify(cacheData));
+        
+        // Update the UI
+        updateNextPrayer(times);
+        
+        if (prayerTable) {
+          populatePrayerTimesTable(prayerTable, times);
+        }
       } else {
-        console.error("Unexpected API response format:", data);
+        console.error('API returned error:', data);
         fallbackToMockData();
       }
     })
     .catch(error => {
-      console.error("Failed to fetch prayer times:", error);
+      console.error('Error fetching prayer times:', error);
       fallbackToMockData();
     });
   
