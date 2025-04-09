@@ -1,6 +1,6 @@
 ---
 layout: leadership
-title: Abdelouahid Souala
+title: Dr. Abdelouahid Souala
 position: President
 order: 0
 ---
