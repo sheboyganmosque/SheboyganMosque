@@ -53,7 +53,7 @@ permalink: /contact/
           
           <div class="mb-3">
             <i class="fas fa-phone me-2"></i>
-            (920) 467-0599
+            (920) 395-4303
           </div>
           
           <div class="mb-3">
