@@ -1,0 +1,13 @@
+# This site exists only to redirect visitors to the new website.
+# Overrides the old Jekyll build settings in the Netlify dashboard.
+[build]
+  publish = "."
+  command = "echo 'No build step: static redirect site'"
+
+# Send every URL on this domain to the new site before any page loads.
+# index.html is a fallback (browser redirect + button) if this rule is ever bypassed.
+[[redirects]]
+  from = "/*"
+  to = "https://islamic-society-of-sheboygan.minbar.one/"
+  status = 301
+  force = true
